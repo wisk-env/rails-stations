@@ -1,0 +1,49 @@
+<h1>座席表</h1>
+<%= flash[:alert] %>
+
+<table>
+  <tr>
+    <th>スクリーン</th>
+  </tr>
+  <tr>
+    <td>
+      <% @sheets_a.each do |sheet| %>
+        <% if Reservation.find_by(sheet_id: sheet.id, schedule_id: @schedule.id) %>
+          <span class="reserved-sheet">
+            <%= "#{sheet.row} - #{sheet.column}" %>
+          </span>
+        <% else %>
+          <%= link_to "#{sheet.row} - #{sheet.column}", new_movie_theater_schedule_reservation_path(@movie, @theater, @schedule, sheet_id: sheet.id) %>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <% @sheets_b.each do |sheet| %>
+        <% if Reservation.find_by(sheet_id: sheet.id, schedule_id: @schedule.id) %>
+          <span class="reserved-sheet">
+            <%= "#{sheet.row} - #{sheet.column}" %>
+          </span>
+        <% else %>
+          <%= link_to "#{sheet.row} - #{sheet.column}", new_movie_theater_schedule_reservation_path(@movie, @theater, @schedule, sheet_id: sheet.id) %>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <% @sheets_c.each do |sheet| %>
+        <% if Reservation.find_by(sheet_id: sheet.id, schedule_id: @schedule.id) %>
+          <span class="reserved-sheet">
+            <%= "#{sheet.row} - #{sheet.column}" %>
+          </span>
+        <% else %>
+          <%= link_to "#{sheet.row} - #{sheet.column}", new_movie_theater_schedule_reservation_path(@movie, @theater, @schedule, sheet_id: sheet.id) %>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+  <%#= link_to "#{sheet.row} - #{sheet.column}", new_movie_schedule_reservation_path(schedule_id: @schedule, date: @date, sheet_id: sheet.id) %>

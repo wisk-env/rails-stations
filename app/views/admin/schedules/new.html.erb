@@ -1,0 +1,40 @@
+<h1>スケジュール新規作成画面test</h1>
+<%= flash[:alert] %>
+
+上映映画ID
+<div>
+  <%= @movie.id %>
+</div>
+上映映画作品名
+<div>
+  <%= @movie.name %>
+</div>
+<%= form_with model: @schedule, url: admin_schedules_path, local: true do |f| %>
+  <div>
+    <%= f.label :theater_id, "映画館" %>
+    <%= @theater.name %>
+    <%= f.hidden_field :theater_id, value: @theater.id %>
+  </div>
+  <div>
+    <%= f.label :screen_id, "スクリーン選択" %>
+    <%= f.collection_select :screen_id, @theater.screens, :id, :number, include_blank: "選択して下さい" %>
+    <% @theater.screens.each do |screen| %>
+      <div>
+        <%= screen.id %><%= screen.number %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= f.label :start_time, "上映開始時間選択" %>
+    <%= f.datetime_field :start_time %>
+  </div>
+  <div>
+    <%= f.label :end_time, "上映終了時間選択" %>
+    <%= f.datetime_field :end_time %>
+  </div>
+  <div>
+    <%= f.hidden_field :movie_id, value: @movie.id %>
+    <%= @movie.id %>
+  </div>
+  <%= f.submit "保存" %>
+<% end %>

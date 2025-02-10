@@ -1,0 +1,24 @@
+<h1>スケジュール編集test</h1>
+
+上映映画ID
+<div>
+  <%= @movie.id %>
+</div>
+上映映画作品名
+<div>
+  <%= @movie.name %>
+</div>
+<%= @schedule.id %>
+
+<%= form_with model: @schedule, url: admin_movie_schedule_path(movie_id: @movie.id, id: @schedule.id), local: true do |f| %>
+  <div>
+    <%= f.label :start_time, "上映開始時間" %>
+    <%= f.datetime_field :start_time %>
+  </div>
+  <div>
+    <%= f.label :end_time, "上映終了時間" %>
+    <%= f.datetime_field :end_time %>
+  </div>
+  <%= f.submit "保存" %>
+  <%= link_to "削除", admin_movie_schedule_path(@schedule), method: :delete, data: { confirm: "スケジュールを削除しますか？" } %>
+<% end %>

@@ -1,0 +1,41 @@
+<h1>予約一覧</h1>
+<table>
+  <% @reservations.each do |reservation| %>
+    <tr>
+      <th>ID</th>
+      <th>映画タイトル</th>
+      <th>sheet_id</th>
+      <th>日時</th>
+      <th>名前</th>
+      <th>メールアドレス</th>
+      <th>登録日時</th>
+      <th>更新日時</th>
+    </tr>
+    <tr>
+      <td>
+        <%= reservation.schedule.movie.id %>
+      </td>
+      <td>
+        <%= reservation.schedule.movie.name %>
+      </td>
+      <td>
+        <%= reservation.sheet_id %>
+      </td>
+      <td>
+        <%= reservation.date %>
+      </td>
+      <td>
+        <%= reservation.name %>
+      </td>
+      <td>
+        <%= reservation.email %>
+      </td>
+      <td>
+        <%= reservation.created_at %>
+      </td>
+      <td>
+        <%= reservation.updated_at %>
+      </td>
+    </tr>
+  <% end %>
+</table>

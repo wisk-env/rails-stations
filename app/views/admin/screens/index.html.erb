@@ -1,0 +1,21 @@
+<h1>
+  <%= "#{@theater.name} 映画館のスクリーン一覧" %>
+</h1>
+<%= link_to "スクリーン新規登録", new_admin_theater_screen_path(@theater) %>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>スクリーン番号</th>
+  </tr>
+  <% @screens.each do |screen| %>
+    <tr>
+      <td>
+        <%= screen.id %>
+      </td>
+      <td>
+        <%= screen.number %>
+      </td>
+    </tr>
+  <% end %>
+</table>

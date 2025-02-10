@@ -1,0 +1,15 @@
+<h1>
+  <%= "#{@theater.name} 映画館のスクリーン新規登録" %>
+</h1>
+<%= flash[:alert] %>
+
+<%= form_with model: @screen, url: admin_theater_screens_path, local: true do |f| %>
+  <div>
+    <%= f.label :number, "スクリーン番号" %>
+    <%= f.number_field :number, in: 1..20 %>
+  </div>
+  <div>
+    <%= f.hidden_field :theater_id, value: @theater.id %>
+  </div>
+  <%= f.submit "新規登録" %>
+<% end %>

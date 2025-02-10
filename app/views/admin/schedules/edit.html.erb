@@ -1,0 +1,17 @@
+<h1>スケジュール編集リダイレクトされてない</h1>
+
+上映映画ID
+<div>
+  <%= @schedule.movie_id %>
+</div>
+<%= form_with model: @schedule, url: admin_movie_schedule_path, local: true do |f| %>
+  <div>
+    <%= f.label :start_time, "上映開始時間" %>
+    <%= f.datetime_field :start_time %>
+  </div>
+  <div>
+    <%= f.label :end_time, "上映終了時間" %>
+    <%= f.datetime_field :end_time %>
+  </div>
+  <%= f.submit "保存" %>
+<% end %>

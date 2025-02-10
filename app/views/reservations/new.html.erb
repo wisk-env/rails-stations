@@ -1,0 +1,48 @@
+<h1>ご予約ページ</h1>
+
+<%= form_with model: @reservation, url: reservations_path, local: true do |f| %>
+  <div>
+    選択中の映画
+    <%= @movie&.name %>
+  </div>
+  <div>
+    選択中の映画館
+    <%= @theater&.name %>
+  </div>
+  <div>
+    <%# 選択中のスクリーン %>
+    <%#= @screen.id %>
+  </div>
+  <div>
+    選択中の日時
+    <%= @schedule&.start_time %>
+    ~
+    <%= @schedule&.end_time %>
+  </div>
+  <div>
+    選択中の座席
+    <%= "#{@sheet.row} - #{@sheet.column} (ID: #{@sheet.id})" %>
+  </div>
+  <div>
+    選択中のスケジュールID
+    <%= @schedule&.id %>
+    <%= @schedule&.movie_id %>
+  </div>
+  <div>
+    <%= f.label :name, "予約者氏名" %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.hidden_field :movie_id, value: @movie&.id %>
+    <%= f.hidden_field :theater_id, value: @theater&.id %>
+    <%= f.hidden_field :screen_id, value: @screen&.id %>
+    <%= f.hidden_field :sheet_id, value: @sheet&.id %>
+    <%= f.hidden_field :schedule_id, value: @schedule&.id %>
+    <%= f.hidden_field :date, value: @date %>
+  </div>
+  <%= f.submit "予約を確定する" %>
+<% end %>

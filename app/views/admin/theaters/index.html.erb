@@ -1,0 +1,21 @@
+<h1>管理画面 - 映画館一覧</h1>
+<%= link_to "映画館新規作成", new_admin_theater_path %>
+<table>
+  <tr>
+      <th>ID</th>
+      <th>映画館名</th>
+  </tr>
+  <% @theaters.each do |theater| %>
+    <tr>
+      <td>
+        <%= theater.id %>
+      </td>
+      <td>
+        <%= theater.name %>
+      </td>
+      <td>
+        <%= link_to "スクリーン一覧", admin_theater_screens_path(theater) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

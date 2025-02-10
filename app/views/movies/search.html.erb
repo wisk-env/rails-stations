@@ -1,0 +1,18 @@
+<h1>検索結果</h1>
+<% @results.each do |movie| %>
+  <div>
+    <%= image_tag("#{movie.image_url}") %>
+  </div>
+  <div>
+    <%= movie.name %>
+  </div>
+  <div>
+    <%= "#{movie.year}年公開" %>
+  </div>
+  <div>
+    <%= movie.is_showing ? "上映中" : "公開予定" %>
+  </div>
+  <div>
+    <%= movie.description %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<h1>上映スケジュール一覧</h1>
+
+<% @schedules.each do |schedule| %>
+<h2>
+  <%= schedule.movie_id %>
+  <%= schedule.movie.name %>
+</h2>
+<div>
+  開始時刻
+  <%= schedule.start_time %>
+</div>
+<div>
+  終了時刻
+  <%= schedule.end_time %>
+</div>
+<div>
+  作成日時
+  <%= schedule.created_at %>
+</div>
+<div>
+  更新日時
+  <%= schedule.updated_at %>
+</div>
+<div>
+  <%= link_to "スケジュールを作成する", admin_schedule_path(schedule) %>
+</div>
+<% end %>
