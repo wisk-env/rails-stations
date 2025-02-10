@@ -1,0 +1,30 @@
+<h1>映画作品詳細ページ</h1>
+<%= @movie.id %>
+<%= image_tag("#{@movie.image_url}") %>
+<%= @movie.name %>
+<%= @movie.year %>
+<%= @movie.description %>
+<%= @movie.is_showing ? "上映中" : "上映予定" %>
+<%= @movie.created_at %>
+<%= @movie.updated_at %>
+<div>
+  <%= @schedules.find_by(movie_id: 5).nil? %>
+</div>
+
+<% @schedules.each do |schedule| %>
+  <%= schedule.theater_id  %>
+  <%= @theaters.find_by(id: schedule.theater_id).name %>
+<% end %>
+
+<h2>本作品上映中の映画館一覧</h2>
+<% @schedules.each do |schedule| %>
+  <div>
+    <%= link_to "#{@theaters.find_by(id: schedule.theater_id).name}映画館スケジュール", movie_theater_schedules_path(@movie, theater_id: schedule.theater_id) %>
+  </div>
+<% end %>
+
+<%#= form_with url: "/movies/#{@movie.id}/reservation", method: :get, local: true do |f| %>
+  <%#= f.date_field :date %>
+  <%#= f.collection_select :schedule_id, @movie.schedules, :id, :start_time %>
+  <%#= f.submit "座席を予約する" %>
+<%# end %>
