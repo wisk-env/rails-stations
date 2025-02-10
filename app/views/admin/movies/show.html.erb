@@ -1,0 +1,52 @@
+<h1>映画詳細</h1>
+<%= flash[:alert] %>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>タイトル</th>
+    <th>公開年</th>
+    <th>概要</th>
+    <th>画像URL</th>
+    <th>上映中</th>
+    <th>登録日時</th>
+    <th>更新日時</th>
+  <tr>
+    <td><%= @movie.id %></td>
+    <td><%= @movie.name %></td>
+    <td><%= @movie.year %></td>
+    <td><%= @movie.description %></td>
+    <td><%= link_to "画像", "#{@movie.image_url}" %><%= image_tag("#{@movie.image_url}") %></td>
+    <td><%= @movie.is_showing ? "上映中" : "公開予定" %></td>
+    <td><%= @movie.created_at %></td>
+    <td><%= @movie.updated_at %></td>
+  </tr>
+</table>
+<h2>スケジュール</h2>
+<div>
+  <%= @movie.id %>
+</div>
+
+<% @theaters.each do |theater| %>
+  <div>
+    <%= link_to "#{theater.name}映画館でスケジュールを作成する", new_admin_movie_theater_schedule_path(@movie, theater_id: theater.id) %>
+  </div>
+<% end %>
+
+<table>
+  <tr>
+    <th>映画館</th>
+    <th>スクリーン</th>
+    <th>上映開始時間</th>
+    <th>上映終了時間</th>
+  </tr>
+  <% @schedules.each do |schedule| %>
+    <tr>
+      <td><%= @theaters.find_by(id: schedule.theater_id).name %></td>
+      <td><%= @screens.find_by(id: schedule.screen_id).number %></td>
+      <td><%= schedule.start_time %></td>
+      <td><%= schedule.end_time %></td>  
+    </tr>
+  <% end %>
+</table>
+
