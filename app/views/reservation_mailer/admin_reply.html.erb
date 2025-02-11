@@ -1,0 +1,13 @@
+<h2><%= "#{@reservation.name} 様" %></h2>
+<p><%= "#{@reservation.email} に送信" %></p>
+<p>
+  この度は、ご予約ありがとうございました。<br>
+  ご予約内容は以下の通りです。
+</p>
+
+<p>【ご予約内容】</p>
+<p><%= "映画館: #{@theater.name}" %></p>
+<p><%= "映画作品: #{@movie.name}" %></p>
+<p><%= "上映開始時間: #{@schedule.start_time}" %></p>
+<p><%= "上映終了時間: #{@schedule.end_time}" %></p>
+<p><%= "座席: #{@sheet.row} - #{@sheet.column}" %></p>
